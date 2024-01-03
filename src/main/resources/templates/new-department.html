@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>New department</title>
+	</head>
+	<body>
+		<h1>Creating department</h1>
+		<form th:action="@{/department/new}" method="post" th:object="${department}">
+<!--			<div>
+				<label>Id:</label>
+				<input type="number" name="id" placeholder="Nhập Id khoa phòng...">
+			</div>-->
+			
+			<div>
+				<label th:text="#{department.name}"></label>
+				<input type="text" th:field="*{name}" placeholder="Nhập tên khoa phòng...">
+				<p th:errors = "*{name}"/>
+			</div>
+			
+			<div>
+				<button aria-placeholder="submit">Save</button>
+			</div>
+		</form>
+	</body>
+</html>

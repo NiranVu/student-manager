@@ -1,0 +1,41 @@
+<nav class="navbar bg-light" th:fragment="menu">
+
+  <div class="container-fluid">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/user/list}">User</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/department/search}">Department</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/ticket/list-staff}">Ticket</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+
+
+<div th:fragment="pageDetail">
+	<p> Tổng số trang:
+		<span th:text="${totalPage}"/>
+	</p> 
+	
+	<p> Tổng số bản ghi:
+		<span th:text="${totalElements}"/>
+	</p> 
+</div>
+
+<div th:fragment="footer">
+	<p>
+		<strong>
+			<h3>
+				Practise Spring
+			</h3>
+		</strong>
+	</p>
+</div>
+

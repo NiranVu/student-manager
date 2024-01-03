@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Edit user</title>
+	</head>
+	<body>
+		<h1>Edit</h1>
+		<form th:action="@{/user/edit}" method="post">
+			
+			<label th:text="#{user.id}"></label>
+			<input readonly type="number" name="id" th:value="${user.id}">
+			
+			<label th:text="#{user.name}"></label>
+			<input type="text" name="name" th:value="${user.name}">
+			
+			<label th:text="#{user.age}"></label>
+			<input type="number" name="age" th:value="${user.age}">
+			
+			<label th:text="#{user.birthday}"></label>
+			<input type="date" name="birthday" th:value="${user.birthday}" placeholder="dd/mm/yyyy">
+			
+			<label th:text="#{user.username}"></label>
+			<input type="text" name="username" th:value="${user.username}" placeholder="username">
+			
+			<label th:text="#{user.password}"></label>
+			<input type="text" name="password" th:value="${user.password}" placeholder="password">
+			
+			<label th:text="#{user.department}"></label>
+			<select name="department.id">
+			<option th:selected="${d.id == user.department?.id}" th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"/>
+			</select>
+			
+			<button aria-placeholder="submit">Save</button>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>List ticket for user</title>
+	</head>
+	<body>
+
+		<div>
+			<h1>LIST TICKET</h1>
+			<a th:href="@{'/ticket/new'}">New</a>
+			<form th:action="@{/ticket/search}" method="get" th:object= "${searchTicketDTO}">
+				
+				<input th:field= "*{keyword}" placeholder="Tìm theo id, số điện thoại...">
+				<p th:errors="*{keyword}"></p>
+				
+				<input th:field= "*{clientName}" placeholder="Tìm theo tên khách hàng...">
+				<p th:errors="*{keyword}"></p>
+				
+				<label th:text="#{user.department}">Department</label>
+				<select name="department.id">
+					<option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"/>
+				</select>
+
+				<label th:text="#{ticket.start}"></label>
+				<input type="date" name="start">
+				
+				<label th:text="#{ticket.end}"></label>
+				<input type="date" name="end">
+
+				<button type="submit">Search</button>
+			</form>
+			
+			<div th:replace="/fragment.html :: pageDetail"></div>
+			
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>Client Name</th>
+					<th>Client Phone</th>
+					<th>Created date</th>
+					<th>Content</th>
+					<th>Status</th>
+					<th>Time for processing</th>
+					<th>Department</th>
+				</tr>
+				
+				<tr th:each="t : ${ticketList}">
+					<td th:text="${t.ticketId}">1</td>
+					<td th:text="${t.clientName}">Test</td>
+					<td th:text="${t.clientPhone}">0912345678</td>
+					<td th:text="${#dates.format(t.createdAt, 'dd/MM/yyyy HH:mm:ss')}">01/01/1980</td>
+					<td th:text="${t.content}">Nội dung</td>
+					<td th:text="${t.status}">Chưa xử lý</td>
+					<td th:text="${#dates.format(t.processDate, 'dd/MM/yyyy HH:mm:ss')}">01/01/1980</td>
+					<td th:text="${t.department?.name}">PHCN</td>
+				</tr>
+			</table>
+			
+			<div>
+				<a th:href="@{'/ticket/search?currentPage=0&size=5'}">1</a>
+				<a th:href="@{'/ticket/search?currentPage=1&size=5'}">2</a>
+			</div>
+		</div>
+		
+	</body>
+</html>

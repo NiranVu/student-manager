@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>New ticket</title>
+	</head>
+	<body>
+		<h1>Creating ticket</h1>
+		<form th:action="@{/ticket/new}" method="post" th:object="${ticket}">
+			
+			<div>
+				<label th:text="#{ticket.clientName}"></label>
+				<input type="text" th:field="*{clientName}" placeholder="Nhập tên người dùng...">
+				<p th:errors = "*{clientName}"/>
+			</div>
+			
+			<div>
+				<label th:text="#{ticket.clientPhone}"></label>
+				<input type="text" th:field="*{clientPhone}" placeholder="Nhập số điện thoại người dùng...">
+			</div>
+			
+			<div>
+				<label th:text="#{ticket.content}"></label>
+				<textarea th:field="*{content}" th:rows="4" th:cols="50">
+					Đây là viết nội dung ý kiến khách hàng
+				</textarea>
+			</div>
+
+			<div>
+				<label th:text="#{ticket.department}">Department</label>
+				<select name="department.id">
+					<option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"/>
+				</select>
+			</div>
+			
+			<div>
+				<button aria-placeholder="submit">Save</button>
+			</div>
+		</form>
+	</body>
+</html>

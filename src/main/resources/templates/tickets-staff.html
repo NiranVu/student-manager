@@ -1,0 +1,53 @@
+<html layout:decorate="/template.html">
+	<head>
+		<title>List ticket for staff</title>
+	</head>
+	<body>
+
+		<div layout:fragment="content">
+			<h1>LIST TICKET FOR STAFF</h1>
+			<form th:action="@{/ticket/search}" method="get" th:object= "${searchTicketDTO}">
+				
+				<input th:field= "*{keyword}" placeholder="Tìm theo id, số điện thoại...">
+				
+				<input th:field= "*{keyword}" placeholder="Tìm theo tên khách hàng...">
+				<p th:errors="*{keyword}"></p>
+				
+				
+
+				<button type="submit">Search</button>
+			</form>
+			
+			<div th:replace="/fragment.html :: pageDetail"></div>
+			
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>Client Name</th>
+					<th>Client Phone</th>
+					<th>Creating date</th>
+					<th>Content</th>
+					<th>Status</th>
+					<th>Time for processing</th>
+					<th>Actions</th>
+				</tr>
+				
+				<tr th:each="d : ${departmentList}">
+					<td th:text="${d.id}">1</td>
+					<td th:text="${d.name}">Test</td>
+					<td th:text="${#dates.format(d.createdAt, 'dd/MM/yyyy HH:mm')}"></td>
+					<td>
+						<a th:href="@{'/department/delete?id=' + ${d.id}}">Delete</a>
+						<a th:href="@{'/department/edit?id=' + ${d.id}}">Edit</a>
+					</td>
+				</tr>
+			</table>
+			
+			<div>
+				<a th:href="@{'/department/search?currentPage=0&size=5'}">1</a>
+				<a th:href="@{'/department/search?currentPage=1&size=5'}">2</a>
+			</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Edit department</title>
+	</head>
+	<body>		
+		<h1>Edit</h1>
+		<form th:action="@{/department/edit}" method="post">
+			<div>
+				<label>Id:</label>
+				<input readonly type="number" name="id" th:value="${department.id}">
+			</div>
+			
+			<div>
+				<label>Name:</label>
+				<input type="text" name="name" th:value="${department.name}">
+			</div>
+			
+			<button aria-placeholder="submit">Save</button>
+		</form>
+	</body>
+</html>

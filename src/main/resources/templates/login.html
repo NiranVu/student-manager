@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Login</title>
+	</head>
+	<body>
+		<h1>Login</h1>
+		<form th:action="@{/login}" method="post">
+			<label>Username:</label>
+			<input type="text" name="username" placeholder="Nhập tên đăng nhập...">
+			
+			<label>Password:</label>
+			<input type="text" name="password" placeholder="Nhập mật khẩu...">
+			
+			<button aria-placeholder="submit">Login</button>
+			<a th:href="@{/ticket/list-user}">Ticket</a>
+		</form>
+	</body>
+</html>

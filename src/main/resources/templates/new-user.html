@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>New user</title>
+	</head>
+	<body>
+		<h1>Creating user</h1>
+		<form th:action="@{/user/new}" method="post" enctype="multipart/form-data" th:object="${user}">
+			
+			<div>
+				<label th:text="#{user.name}"></label>
+				<input type="text" th:field="*{name}" placeholder="Nhập tên người dùng...">
+				<p th:errors = "*{name}"/>
+			</div>
+			
+			<div>
+				<label th:text="#{user.age}"></label>
+				<input type="number" th:field="*{age}" placeholder="Nhập tuổi người dùng...">
+				<p th:errors = "*{age}"/>
+			</div>
+			
+			<div>
+				<label th:text="#{user.username}"></label>
+				<input type="text" th:field="*{username}" placeholder="Nhập tên đăng nhập...">
+			</div>
+			
+			<div>
+				<label th:text="#{user.password}"></label>
+				<input type="text" th:field="*{password}" placeholder="Nhập mật khẩu...">
+			</div>
+
+			
+			<div>
+				<label th:text="#{user.avatar.file}"></label>
+				<input type="file" name="file" accept="image/*">
+			</div>
+			
+			<div>
+				<label th:text="#{user.department}">Department</label>
+				<select name="department.id">
+					<option th:each="d : ${departmentList}" th:value="${d.id}" th:text="${d.name}"/>
+				</select>
+			</div>
+			
+			<div>
+				<label th:text="#{user.birthday}"></label>
+				<input type="date" name="birthday" placeholder="dd/mm/yyyy"/>
+			</div>
+			
+			<div>
+				<button aria-placeholder="submit">Save</button>
+			</div>
+		</form>
+	</body>
+</html>

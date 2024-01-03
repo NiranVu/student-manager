@@ -1,0 +1,57 @@
+<html layout:decorate="/template.html">
+	<head>
+		<title>List user</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<h1>LIST USER</h1>
+			<a th:href="@{'/user/new'}">New</a>
+			<form th:action="@{/user/search}" method="get" th:object= "${searchDTO}">
+				
+				<input th:field= "*{keyword}" placeholder="Tìm tên...">
+				<p th:errors="*{keyword}"></p>
+				
+				
+				<input th:field="*{currentPage}" placeholder="Trang hiện tại...">
+				<input th:field="*{size}" placeholder="Nhập số lượng mỗi trang...">
+				<input name="sortedField" th:value="${searchDTO?.sortedField}" placeholder="Sắp xếp theo...">
+				<button type="submit">Search</button>
+			</form>
+			
+			<div th:replace="/fragment.html :: pageDetail"></div>
+			
+			<table border="1">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Birthday</th>
+					<th>Avatar</th>
+					<th>Department</th>
+					<th>Action</th>
+				</tr>
+				
+				<tr th:each="u : ${userList}">
+					<td th:text="${u.getId()}">1</td>
+					<td th:text="${u.getName()}">Test</td>
+					<td th:text="${u.getAge()}">23</td>
+					<td th:text="${#dates.format(u.getBirthday(), 'dd/MM/yyyy')}">01/01/2000</td>
+					<td>
+						<img th:src="@{'/user/download?filename=' + ${u.avatarURL}}"/>
+					</td>
+					<td th:text="${u.department?.name}">PHCN</td>
+					<td>
+						<a th:href="@{'/user/delete?id=' + ${u.id}}">Delete</a>
+						<a th:href="@{'/user/edit?id=' + ${u.id}}">Edit</a>
+					</td>
+				</tr>
+			</table>
+			
+			<div>
+				<a th:href="@{'/user/search?currentPage=0&size=5'}">1</a>
+				<a th:href="@{'/user/search?currentPage=1&size=5'}">2</a>
+			</div>
+		</div>
+		
+	</body>
+</html>
