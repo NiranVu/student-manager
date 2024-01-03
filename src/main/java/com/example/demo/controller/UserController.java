@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> 17851d1 (fix all bugs)
 
 import com.example.demo.dto.PageDTO;
 import com.example.demo.dto.ResponseDTO;
@@ -28,11 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 
-<<<<<<< HEAD
-@Controller
-=======
 @RestController
->>>>>>> 17851d1 (fix all bugs)
 @RequestMapping("/user")
 public class UserController {
 
@@ -44,11 +36,7 @@ public class UserController {
 		
 		if(!userDTO.getFile().isEmpty()) {
 			String filename = userDTO.getFile().getOriginalFilename();
-<<<<<<< HEAD
-			File saveFile = new File("F:/Image/" + filename);
-=======
 			File saveFile = new File("/home/niran/project/spring-project/image" + filename);
->>>>>>> 17851d1 (fix all bugs)
 			userDTO.getFile().transferTo(saveFile);
 			userDTO.setAvatarURL(filename);
 		}
@@ -75,11 +63,7 @@ public class UserController {
 	
 		if(!userDTO.getFile().isEmpty()) {
 			String filename = userDTO.getFile().getOriginalFilename();
-<<<<<<< HEAD
-			File saveFile = new File("D:/Image/" + filename);
-=======
 			File saveFile = new File("/home/niran/project/spring-project/image" + filename);
->>>>>>> 17851d1 (fix all bugs)
 			userDTO.getFile().transferTo(saveFile);
 			userDTO.setAvatarURL(filename);
 		}
